@@ -1,0 +1,35 @@
+    
+    <%- include('header'); -%>
+    <!-- best players -->
+    <div class="best-players">
+        <div class="bp-space" ></div>
+        <select name="" id="selectBestScores" onchange="getScorers(value)">
+            <option value="1" >2. kola, č-finala, p-finala i finala</option>
+            <option value="4" >četvrtfinala</option>
+            <option value="2">1. kola</option>
+            <option value="3">ukupno</option>
+        </select>
+        <div class="bp-space"></div>
+        <table>
+            <tr>
+                <th>Br</th>
+                <th>Prezime</th>
+                <th>Ime</th>
+                <th>Golova</th>
+                <th>Razred</th>
+            </tr>
+            <tbody id="bp-list">
+    
+            </tbody>
+    
+          </table>
+     
+    <div class="legend dn">
+            <p>🟡-nema promjene</p>   
+            <p>🔼-porast</p>
+            <p><span class="new-entry">new</span>-novi</p>
+        
+        </div>      
+    </div>
+
+    <%- include('footer'); -%>
