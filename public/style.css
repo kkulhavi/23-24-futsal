@@ -65,14 +65,37 @@ a:hover{
 .b{
     font-weight: bold;
 }
-.separator-1{
-    height: 3.5vh; 
+.middle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ 
+/*1st*/
+.separator-0{
+    height: 1.5vh; 
     
 }
-.separator-11{
-    height: 2vh;   
+.separator-00{
+    height: 1vh;   
     border-right: 1px solid var(--border-right-color);
 }
+
+
+/*2nd*/
+.s2-start{
+    display: block;
+    height: 2%;
+}
+.separator-1{
+    height: 5.5vh;   
+}
+.separator-11{
+    height: 6vh;   
+    border-right: 1px solid var(--border-right-color);
+}
+
 .separator-2{
     height: 8.9vh;   
     border-right: 1px solid var(--border-right-color);
