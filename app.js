@@ -24,7 +24,7 @@ app.get('/qualifications', (req, res) => {
   res.render('qualifications')
 })
 app.get('/about', (req, res) => {
-  res.render('about',{dev:'Krunoslav Kulhavi', judge:'AA', idea:'BB'})
+  res.render('about',{dev:'Krunoslav Kulhavi', judge:'??', idea:'Danko Tomašek'})
 })
 
 app.get('/mobile', (req, res) => {
