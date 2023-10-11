@@ -60,59 +60,47 @@ a:hover{
     background-color: greenyellow;
     border: 1px solid green;
     /*border-radius: 5px;*/
-   
+    
 }
 .b{
     font-weight: bold;
 }
-.middle{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/*all metch white*/
+.wh{
+    color: white;
+    border: white;
+    background-color: white;
 }
-
- 
-/*1st*/
-.separator-0{
-    height: 1.5vh;
-   
-}
-.separator-00{
-    height: 1.3vh;  
-    border-right: 1px solid var(--border-right-color);
-}
-
-
-/*2nd*/
-.s2-start{
-    display: block;
-    height: 2%;
+.le{
+  position: absolute;
+  left: 10px; 
+  top:-8px 
 }
 .separator-1{
-    height: 5.5vh;  
+    height: 3.5vh; 
+    
 }
 .separator-11{
-    height: 6vh;  
+    height: 2vh;   
     border-right: 1px solid var(--border-right-color);
 }
-
 .separator-2{
-    height: 8.9vh;  
+    height: 8.9vh;   
     border-right: 1px solid var(--border-right-color);
 }
 .separator-2-noline{
     height: 8.9vh;      
 }
 .separator-q{
-    height: 20vh;
-    border-right: 1px solid var(--border-right-color);  
+    height: 20vh; 
+    border-right: 1px solid var(--border-right-color);   
 }
 .separator-q-noline{
     height: 23vh;    
 }
 .separator-s{
-    height: 50vh;
-    border-right: 1px solid var(--border-right-color);  
+    height: 50vh; 
+    border-right: 1px solid var(--border-right-color);   
 }
 
 
@@ -133,12 +121,6 @@ a:hover{
     border-radius: 3px;
     text-align: center;
 }
-/*white all for empty metch*/
-.wh{
-    color: white;
-    border: white;
-    background-color: white;
-}
 
 
 /*sec round*/
@@ -153,7 +135,7 @@ a:hover{
 }
 .s3{
     display: block;
-    height: 20%;
+    height: 20%; 
 }
 
 /*q round*/
@@ -180,7 +162,7 @@ a:hover{
 }
 .ss{
     display: block;
-    height: 6%;  
+    height: 6%;   
 }
 .sstart{
     display: block;
@@ -269,10 +251,10 @@ option:first-child{
     box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
 }
 .info{
-    margin: 10px 30px;  
+    margin: 10px 30px;   
 }
 .legend{
-    margin: 30px 200px;  
+    margin: 30px 200px;   
 }
 .info-staff{
     margin: 10px 20px 20px 20px; /*t r b l*/
@@ -280,7 +262,7 @@ option:first-child{
 .web-traffic{
     width: 100%;
     display: flex;
-   
+    
 }
 .web-traffic img{
     width: 80%;
@@ -321,42 +303,38 @@ option:first-child{
 @media(max-height:400px){
 
     .info{
-        margin: 20px;
-    }
+        margin: 20px; 
+    } 
     .container{
         height: 150vh;
     }
-
-
+    
     .separator-1{
-        height: 8.5vh;
-       
+        height: 5.3vh; 
+        
     }
 
     .separator-11{
-        height: 12.1vh;  
+        height: 4.1vh;   
         border-right: 1px solid var(--border-right-color);
     }
     .separator-2{
-        height: 16vh;  
+        height: 16vh;   
         border-right: 1px solid var(--border-right-color);
     }
     .separator-2-noline{
         height: 15vh;      
     }
     .separator-q{
-        height: 45vh;
-        border-right: 1px solid var(--border-right-color);  
+        height: 45vh; 
+        border-right: 1px solid var(--border-right-color);   
     }
     .separator-q-noline{
         height: 40vh;    
     }
     .separator-s{
-        height: 100vh;
-        border-right: 1px solid var(--border-right-color);  
-    }
-        .null-round .team{
-        font-size: 12px;
+        height: 100vh; 
+        border-right: 1px solid var(--border-right-color);   
     }
 
     .first-round .team{
@@ -378,6 +356,7 @@ option:first-child{
         height: 57%;
     }
 }
+
 
 
 
