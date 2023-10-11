@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.get('/bestplayers', (req, res) => {
   res.render('bestplayers')
 })
-app.get('/first', (req, res) => {
+app.get('/qualifications', (req, res) => {
   res.render('firstround')
 })
 app.get('/about', (req, res) => {
