@@ -121,14 +121,7 @@ a:hover{
     border-radius: 3px;
     text-align: center;
 }
-.info{
-    color: var(--phases-pink-color);
-    font-weight: bold;
-    background-color: yellow;
-    border: 1px solid var(--phases-pink-color);
-    border-radius: 3px;
-    text-align: center;
-}
+
 
 
 /*sec round*/
