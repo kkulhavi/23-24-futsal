@@ -65,17 +65,24 @@ a:hover{
 .b{
     font-weight: bold;
 }
-/*all metch white*/
+/*all match white*/
 .wh{
     color: white;
     border: white;
     background-color: white;
 }
+/*info about time*/
 .le{
   position: absolute;
   left: 2px; 
   top:-8px;
 }
+.mid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .separator-1{
     height: 3.5vh; 
     

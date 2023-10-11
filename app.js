@@ -21,7 +21,7 @@ app.get('/bestplayers', (req, res) => {
   res.render('bestplayers')
 })
 app.get('/qualifications', (req, res) => {
-  res.render('firstround')
+  res.render('qualifications')
 })
 app.get('/about', (req, res) => {
   res.render('about',{dev:'Krunoslav Kulhavi', judge:'AA', idea:'BB'})
