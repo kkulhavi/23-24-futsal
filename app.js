@@ -15,6 +15,11 @@ const items=[
 ]
 
 app.get('/', (req, res) => {
+  //res.render('index')
+  res.render('qualifications')
+})
+app.get('/finals', (req, res) => {
+  //res.render('index')
   res.render('index')
 })
 app.get('/bestplayers', (req, res) => {
