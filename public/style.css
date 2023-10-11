@@ -82,6 +82,9 @@ a:hover{
     align-items: center;
     justify-content: center;
 }
+.back{
+    background-color: var(--nav-bg-color);
+}
 
 .separator-1{
     height: 3.5vh; 
