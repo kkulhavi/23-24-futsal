@@ -73,8 +73,8 @@ a:hover{
 }
 .le{
   position: absolute;
-  left: 10px; 
-  top:-8px 
+  left: 2px; 
+  top:-px 
 }
 .separator-1{
     height: 3.5vh; 
@@ -114,6 +114,14 @@ a:hover{
     border-right: 1px solid var(--border-right-color);
 }
 .today{
+    color: var(--phases-pink-color);
+    font-weight: bold;
+    background-color: yellow;
+    border: 1px solid var(--phases-pink-color);
+    border-radius: 3px;
+    text-align: center;
+}
+.info{
     color: var(--phases-pink-color);
     font-weight: bold;
     background-color: yellow;
