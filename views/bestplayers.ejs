@@ -1,14 +1,14 @@
     
     <%- include('header'); -%>
-    <!-- best players -->
+    <!-- best players 
     <div class="best-players">
         <div class="bp-space" ></div>
         <select name="" id="selectBestScores" onchange="getScorers(value)">
-            <option value="1" >2. kola, č-finala, p-finala i finala</option>
+            <option value="1" >1. i 2.kola, č-finala, p-finala i finala</option>
             <option value="4" >četvrtfinala</option>
             <option value="2">1. kola</option>
             <option value="3">ukupno</option>
-        </select>
+        </select>-->
         <div class="bp-space"></div>
         <table>
             <tr>
@@ -18,18 +18,27 @@
                 <th>Golova</th>
                 <th>Razred</th>
             </tr>
-            <tbody id="bp-list">
+       <!--     <tbody id="bp-list">-->
+                <% bp.forEach((player,i) => { %>
+                    <tbody>
+                        <td><%=i+1 %></td>
+                        <td><%= player.surname%></td>
+                        <td><%= player.name%></td>
+                        <td><%= player.goal%></td>
+                        <td><%= player.cl%></td>
+                    </tbody>
+                <% }) %>
+      </table>          
+      <!--       </tbody>
     
-            </tbody>
-    
-          </table>
+          
      
     <div class="legend dn">
             <p>🟡-nema promjene</p>   
             <p>🔼-porast</p>
             <p><span class="new-entry">new</span>-novi</p>
         
-        </div>      
+        </div>-->       
     </div>
 
     <%- include('footer'); -%>
