@@ -1,8 +1,16 @@
 const express = require('express')
 const app = express()
 app.set('view engine', 'ejs');
+
+var bodyParser = require('body-parser')
+
 app.use(express.static("public"));
+
 const port = process.env.PORT||3000
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 
 const fruits=['apple','pear','plum','raspberry']
 const items=[
@@ -14,52 +22,78 @@ const items=[
 
 ]
 const firstRound=[
-  //-{id:1, round: 1, fTeam:'2.S',sTeam:'3.EL',fTeamScore:0, sTeamScore:2, goals:[{name: 'Stjepan', surname: 'Bina', goal:2, cl:'3.EL'}]},
-  {id:2, round: 1, fTeam:'2.MT',sTeam:'1.S',fTeamScore:0, sTeamScore:0, goals:[]},
-  {id:3, round: 1, fTeam:'3.S',sTeam:'1.EL',fTeamScore:4, sTeamScore:0, goals:[{name: 'Marko', surname: 'Vuk ', goal:1, cl:'3.S'}, {name: 'Dejan', surname: 'Borojević', goal:1, cl:'3.S'}, {name: 'Robert', surname: 'Batković', goal:1, cl:'3.S'}, {name: 'Antonio', surname: 'Josipović', goal:1, cl:'3.S'}]},
-  {id:4, round: 1, fTeam:'1.P',sTeam:'2.SP',fTeamScore:6, sTeamScore:4, goals:[{name: 'Ivan', surname: 'Ivić', goal:1, cl:'1.P'}, {name: 'Leon', surname: 'Mihajlović', goal:1, cl:'2.SP'}]},
-  {id:5, round: 1, fTeam:'2.EL',sTeam:'1.SP',fTeamScore:10, sTeamScore:1, goals:[{name: 'David', surname: 'Bliznac', goal:6, cl:'2.EL'}, {name: 'Gabrijel', surname: 'Kolić', goal:2, cl:'2.EL'}, {name: 'Saša', surname:'Kabljanac', goal:2, cl:'2.EL'}, {name: 'Gabrijel',surname:'GGG', goal:1, cl:'1.SP'}]},
-  {id:6, round: 1, fTeam:'2.PT',sTeam:'4.PT',fTeamScore:0, sTeamScore:1, goals:[{name: 'Vjekoslav', surname:'Pavičić', goal:1, cl:'4.PT'}]},
-  {id:7, round: 1, fTeam:'3.RT',sTeam:'2.MT',fTeamScore:2, sTeamScore:0, goals:[{name: 'David', surname: 'Dubravac', goal:1, cl:'3.RT'}, {name: 'Toni', surname: 'Čimiris', goal:1, cl:'3.RT'}]},
-  //-{id:8, round: 1, fTeam:'1.RT',sTeam:'2.P',fTeamScore:2, sTeamScore:0, goals:[{name: 'Franjo', surname: 'Đorđević', goal:1, cl:'1.RT'}, {name: 'Antonio', surname: 'Bičak', goal:1, cl:'1.RT'}]},
-  //-{id:9, round: 1, fTeam:'3.PT',sTeam:'2.S',fTeamScore:1, sTeamScore:0, goals:[{name: 'Valentino', surname: 'Tolić', goal:1, cl:'3.PT'}]},
-  {id:10, round: 1, fTeam:'3.MT',sTeam:'K/M',fTeamScore:1, sTeamScore:0, goals:[{name: 'Dragan', surname: 'DDD', goal:1, cl:'3.MT'}]},
-  {id:11, round: 1, fTeam:'1.MT',sTeam:'2.RT',fTeamScore:0, sTeamScore:2, goals:[{name: 'David', surname: 'Krmela', goal:1, cl:'2.RT'}]},
-  {id:12, round: 1, fTeam:'1.MT',sTeam:'2.RT',fTeamScore:0, sTeamScore:2, goals:[{name: 'David', surname: 'Krmela', goal:1, cl:'2.RT'}]},
-  //-{id:13, round: 1, fTeam:'1.MT',sTeam:'2.RT',fTeamScore:0, sTeamScore:2, goals:[{name: 'David', surname: 'Krmela', goal:1, cl:'2.RT'}]},
-  {id:14, round: 1, fTeam:'3.SP',sTeam:'1.RT',fTeamScore:1, sTeamScore:4, goals:[{name: 'Borna', surname: 'Žabić', goal:1, cl:'1.RT'}]},
-  {id:15, round: 1, fTeam:'1.MT',sTeam:'2.RT',fTeamScore:0, sTeamScore:2, goals:[{name: 'David', surname: 'Krmela', goal:1, cl:'2.RT'},{name: 'Borna', surname: 'Žabić', goal:1, cl:'1.RT'}]},
-  //-{id:16, round: 1, fTeam:'1.MT',sTeam:'2.RT',fTeamScore:0, sTeamScore:2, goals:[{name: 'David', surname: 'Krmela', goal:1, cl:'2.RT'}]}
+  /*-*/{id:1, round: 1, fTeam:'2.S',sTeam:'3.EL',fTeamScore:0, sTeamScore:2, goals:[{name: 'Stjepan', surname: 'Bina', goal:2, cl:'3.EL'}]},
+    {id:2, round: 1, fTeam:'2.MT',sTeam:'1.S',fTeamScore:0, sTeamScore:0, goals:[{name: '-', surname: 'Alandžak', goal:4, cl:'2.MT'},{name: '-', surname: 'Đinić', goal:1, cl:'2.MT'},]},
+    {id:3, round: 1, fTeam:'2.PT',sTeam:'2.RT',fTeamScore:2, sTeamScore:1, goals:[{name: '-', surname: 'Štajgler ', goal:1, cl:'2.PT'}, {name: '-', surname: 'Bešlić', goal:1, cl:'2.PT'},{name: '-', surname: 'Bičak', goal:1, cl:'2.RT'},]},
+    {id:4, round: 1, fTeam:'1.MT',sTeam:'3:MT',fTeamScore:0, sTeamScore:1, goals:[{name: '-', surname: 'Piščević', goal:1, cl:'3.MT'}]},
+    {id:5, round: 1, fTeam:'3.EL',sTeam:'1.P',fTeamScore:3, sTeamScore:2, goals:[{name: '-', surname: 'Plavček', goal:2, cl:'3.EL'}, {name: '-', surname: 'Tomašković', goal:1, cl:'3.EL'}, {name: '-', surname:'Havliček', goal:1, cl:'1.P'}, {name: '-',surname:'Skalnik', goal:1, cl:'1.P'}]},
+    {id:6, round: 1, fTeam:'4.RT',sTeam:'4.PT',fTeamScore:9, sTeamScore:0, goals:[{name: 'Ivano', surname:'Ivančić', goal:2, cl:'3.RT'}, {name: 'Leo', surname:'Putak', goal:1, cl:'3.RT'}, {name: 'Lukas', surname:'Brdal', goal:1, cl:'3.RT'}, {name: 'Karlo', surname:'Đurđević', goal:2, cl:'3.RT'},{name: 'David', surname:'Krmela', goal:2, cl:'3.RT'},{name: 'Ivan', surname:'Zbožinek', goal:1, cl:'3.RT'}]},
+    {id:7, round: 1, fTeam:'1.EL',sTeam:'3.S',fTeamScore:0, sTeamScore:3, goals:[{name: '-', surname: 'Matić', goal:2, cl:'3.S'},{name: '-', surname: 'Brainterbach', goal:1, cl:'3.EL'},]},
+  /*-*/{id:8, round: 1, fTeam:'1.RT',sTeam:'2.P',fTeamScore:2, sTeamScore:0, goals:[{name: 'Franjo', surname: 'Đorđević', goal:1, cl:'1.RT'}, {name: 'Antonio', surname: 'Bičak', goal:1, cl:'1.RT'}]},
+  /*-*/{id:9, round: 1, fTeam:'3.PT',sTeam:'2.S',fTeamScore:1, sTeamScore:0, goals:[{name: 'Valentino', surname: 'Tolić', goal:1, cl:'3.PT'}]},
+    {id:10, round: 1, fTeam:'2.P',sTeam:'1.SP',fTeamScore:9, sTeamScore:0, goals:[{name: '-', surname: 'Lefelman', goal:2, cl:'2.P'},{name: '-', surname: 'Djonović', goal:1, cl:'2.P'},{name: '-', surname: 'Ivić', goal:5, cl:'2.P'},{name: '-', surname: 'Lovrić', goal:1, cl:'2.P'},]},
+    {id:11, round: 1, fTeam:'3.PT',sTeam:'2.SP',fTeamScore:6, sTeamScore:1, goals:[{name: '-', surname: 'Šinko', goal:4, cl:'3.PT'},{name: '-', surname: 'Šimala', goal:2, cl:'3.PT'},{name: '-', surname: 'Seferović', goal:1, cl:'2.SP'}]},
+    {id:12, round: 1, fTeam:'1.PT',sTeam:'3.P',fTeamScore:2, sTeamScore:1, goals:[{name: '-', surname: 'Božina', goal:1, cl:'1.PT'},{name: '-', surname: 'Novotni', goal:1, cl:'1.PT'},{name: '-', surname: 'Poklečki', goal:1, cl:'3.P'}]},
+  /*-*/{id:13, round: 1, fTeam:'1.MT',sTeam:'2.RT',fTeamScore:0, sTeamScore:2, goals:[{name: 'David', surname: 'Krmela', goal:1, cl:'2.RT'}]},
+    {id:14, round: 1, fTeam:'3.SP',sTeam:'1.RT',fTeamScore:1, sTeamScore:4, goals:[{name: 'Borna', surname: 'Žabić', goal:1, cl:'1.RT'}]},
+    {id:15, round: 1, fTeam:'2.EL',sTeam:'KM',fTeamScore:10, sTeamScore:0, goals:[{name: '-', surname: 'Plaušić', goal:1, cl:'2.EL'},{name: '-', surname: 'Ereiz', goal:4, cl:'2.EL'},{name: '-', surname: 'Ilinković', goal:2, cl:'2.EL'},{name: '-', surname: 'Borojević', goal:1, cl:'2.EL'},{name: '-', surname: 'Vicić', goal:1, cl:'2.EL'},{name: '-', surname: 'Đolić', goal:1, cl:'2.EL'}]},
+  /*-*/{id:16, round: 1, fTeam:'1.MT',sTeam:'2.RT',fTeamScore:0, sTeamScore:2, goals:[{name: 'David', surname: 'Krmela', goal:1, cl:'2.RT'}]},
   
+/*second round */
+  {id:17, round: 2, fTeam:'Prof',sTeam:'2.MT',fTeamScore:6, sTeamScore:0, goals:[{name: '-', surname: 'Đilas', goal:1, cl:'Prof'},{name: 'Tomislav', surname: 'Brletić', goal:3, cl:'Prof'},{name: 'Dražen', surname: 'Hušek', goal:2, cl:'Prof'},]},
+      {id:18, round: 2, fTeam:'2.PT',sTeam:'3.MT',fTeamScore:2, sTeamScore:8, goals:[{name: '-', surname: 'Kranjec', goal:1, cl:'3.MT'},{name: '-', surname: 'Mateš', goal:2, cl:'3.MT'},{name: '-', surname: 'Piščević', goal:3, cl:'3.MT'},{name: '-', surname: 'Ježinec', goal:2, cl:'3.MT'},{name: '-', surname: 'Salaj', goal:1, cl:'2.PT'},{name: '-', surname: 'Ribarić', goal:1, cl:'2.PT'}]},
+      {id:19, round: 2, fTeam:'1.P',sTeam:'3.RT',fTeamScore:0, sTeamScore:5, goals:[{name: 'Ivan', surname: 'Brdal', goal:2, cl:'3.RT'},{name: 'Ivano', surname: 'Ivančić', goal:2, cl:'3.RT'},{name: 'David', surname: 'Krmela', goal:1, cl:'3.RT'}]},
+      {id:20, round: 2, fTeam:'3.SP',sTeam:'4.RT',fTeamScore:2, sTeamScore:7, goals:[{name: 'Patrik', surname: 'Broš', goal:1, cl:'4.RT'},{name: 'Toni', surname: 'Čimiris', goal:2, cl:'4.RT'},{name: 'David', surname: 'Dubravac', goal:1, cl:'4.RT'},{name: 'Dean', surname: 'Rončević', goal:2, cl:'4.RT'},{name: 'Mihael', surname: 'Malina', goal:1, cl:'4.RT'},{name: '-', surname: 'Đorđević', goal:1, cl:'2.SP'},{name: '-', surname: 'Matić', goal:1, cl:'2.SP'}]},
+      {id:21, round: 2, fTeam:'2.S',sTeam:'2.P',fTeamScore:4, sTeamScore:1, goals:[{name: '-', surname: 'Gegić ', goal:2, cl:'2.S'},{name: '-', surname: 'Ivić ', goal:1, cl:'2.S'},{name: '-', surname: 'Vicić ', goal:1, cl:'2.S'},{name: '-', surname: 'Ivić', goal:1, cl:'2.P'},]},
+  {id:22, round: 2, fTeam:'1.P',sTeam:'2.RT',fTeamScore:3, sTeamScore:1, goals:[{name: 'Renato', surname: 'Lefelman', goal:1, cl:'1.P'}, {name: 'Lukas', surname: 'Brdal', goal:1, cl:'2.RT'}]},
+  {id:23, round: 2, fTeam:'4.EL',sTeam:'3.RT',fTeamScore:5, sTeamScore:3, goals:[{name: 'Teo', surname: 'Duvnjak', goal:3, cl:'4.EL'}, {name: 'David', surname: 'Dubravac', goal:2, cl:'3.RT'}, {name: 'Toni', surname: 'Čimiris', goal:1, cl:'3.RT'}]},
+      {id:24, round: 2, fTeam:'2.EL',sTeam:'4.MT',fTeamScore:3, sTeamScore:0 , goals:[{name: '-', surname: 'Ereiz', goal:2, cl:'2.EL'},{name: '-', surname: 'Parag', goal:1, cl:'2.EL'}]},
+      //quarter finals-round 3
+      /*25-28 */
+  {id:25, round: 3, fTeam:'3.SP',sTeam:'3.MT',fTeamScore:0, sTeamScore:0, goals:[{name: 'Stjepan', surname: 'Sekulić', goal:1, cl:'3.MT'}]},
+  {id:26, round: 3, fTeam:'4.RT',sTeam:'4.MT',fTeamScore:1, sTeamScore:0, goals:[{name: 'Valentino', surname: 'Mihalinac', goal:1, cl:'4.RT'}]},
+  {id:27, round: 3, fTeam:'PROF',sTeam:'1.P',fTeamScore:0, sTeamScore:0, goals:[{name: 'Danko', surname: 'Tomašek', goal:1, cl:'Prof'}, {name: 'Branko', surname: 'Blažević', goal:1, cl:'Prof'}, {name: 'Dražen', surname: 'Hušek', goal:2, cl:'Prof'}, {name: 'Tomislav', surname: 'Brletić', goal:3, cl:'Prof'}, {name: 'Karlo', surname: 'Lovrić', goal:1, cl:'1.P'}]},
+  {id:28, round: 3, fTeam:'4.EL',sTeam:'2.EL',fTeamScore:0, sTeamScore:0, goals:[{name: 'Teo', surname: 'Duvnjak', goal:1, cl:'4.EL'}, {name: 'David', surname: 'Bliznac', goal:2, cl:'2.EL'}]},
+   //semi finals
+      /*29-30 */
+  {id:29, round: 4, fTeam:'3:MT',sTeam:'4.RT',fTeamScore:0, sTeamScore:1, goals:[{name: 'Luka', surname: 'Vuk', goal:1, cl:'4.RT'}]},
+  {id:30, round: 4, fTeam:'PROF',sTeam:'2.EL',fTeamScore:5, sTeamScore:0, goals:[{name: 'Danko', surname: 'Tomašek', goal:2, cl:'Prof'}, {name: 'Branko', surname: 'Blažević', goal:1, cl:'Prof'}, {name: 'Dražen', surname: 'Hušek', goal:1, cl:'Prof'}, {name: 'Tomislav', surname: 'Brletić', goal:1, cl:'Prof'}]},
+   //finals
+      /*31 */
+  {id:31, round: 5, fTeam:'4.RT',sTeam:'PROF',fTeamScore:5, sTeamScore:0, goals:[{name: 'Danko', surname: 'Tomašek', goal:1, cl:'Prof'}, {name: 'Tomislav', surname: 'Brletić', goal:1, cl:'Prof'}]}
 ]
+/*vicić,ivić,gegić 2.sp jedan razmak */
+
 
 const bestPlayers=[
     
   //...firstRound[0].goals,
-  //...firstRound[1].goals, 
-  //...firstRound[2].goals, 
-  //...firstRound[3].goals,
-  //...firstRound[4].goals,
-  //...firstRound[5].goals, 
-  //...firstRound[6].goals, 
-  //...firstRound[7].goals,
+  ...firstRound[1].goals,
+  ...firstRound[2].goals,
+  ...firstRound[3].goals,
+  ...firstRound[4].goals,
+  ...firstRound[5].goals, 
+  ...firstRound[6].goals, 
   ...firstRound[9].goals,
-  //...firstRound[10].goals, 
-  //...firstRound[10].goals, 
+  ...firstRound[10].goals,
+  ...firstRound[11].goals, 
   //...firstRound[11].goals, 
   //...firstRound[12].goals, 
-  //...firstRound[13].goals, 
-  //...firstRound[13].goals,
+  ...firstRound[13].goals, 
+  ...firstRound[14].goals,
   //...firstRound[15].goals, 
+
+  /*second round */
+  //...firstRound[16].goals, 
+  //...firstRound[17].goals, 
+  ...firstRound[18].goals, 
+  ...firstRound[19].goals, 
+  ...firstRound[20].goals, 
+  //...firstRound[21].goals, 
+  //...firstRound[22].goals, 
+  ...firstRound[23].goals, 
   
-  //...secondRound[0].goals,
-  //...secondRound[1].goals,
-  //...secondRound[2].goals,
-  //...secondRound[3].goals,  
-  //...secondRound[4].goals,
-  //...secondRound[5].goals,
-  //...secondRound[6].goals,
-  //...secondRound[7].goals  
+   
 ]
 
 
@@ -81,6 +115,8 @@ bestPlayers.reduce(function(res, value) {
 console.log(result)
 
 
+
+
 app.get('/', (req, res) => {
   //res.render('index')
   res.render('qualifications',{fround:firstRound})
@@ -90,13 +126,22 @@ app.get('/finals', (req, res) => {
   res.render('index')
 })
 app.get('/bestplayers', (req, res) => {
-  res.render('bestplayers',{bp:result})
+  res.render('bestplayers',{bp:resultDsc=result.sort((a,b)=>b.goal-a.goal)})
 })
 app.get('/qualifications', (req, res) => {
   res.render('qualifications',{fround:firstRound})
 })
 app.get('/about', (req, res) => {
   res.render('about',{dev:'Krunoslav Kulhavi', judge:'??', idea:'Danko Tomašek'})
+})
+
+app.post('/info', (req, res) => {
+  console.log(req.body.id)
+  
+  //res.send(items.sort((a,b)=>a.price-b.price))
+  //res.send(items.filter(a=>a.price>500))
+  //res.send(items.filter(a=>a.brand==='Samsung'))
+  res.send(firstRound.filter(a=>a.id===req.body.id)) 
 })
 
 app.get('/mobile', (req, res) => {

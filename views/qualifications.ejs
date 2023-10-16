@@ -1,19 +1,41 @@
 <%- include('header'); -%>
 <!-- elimination chart -->
-    <div class="container">
+<div class="container">
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="message"></p>
+  </div>
+
+</div>
       
         <div class="first-round box">
 <!--(1)---------------------------------------------------------->
             <div class="col-title">1st</div>    
-            <div class="team bb pd">
-                -
-            </div>
-            <div class="team br">
-                -
-            </div>
+            
+                <div id="myBtn" onclick="sendId(1)">
+                    <div class="team bb pd">
+                        -
+                    </div>
+                    <div class="team br">
+                        -
+                    </div>
+                </div >
+           
+            
+                
+            
+            
+            
 
 <!--(2)----------------------------------------------------------->            
-        <div class="separator-11"></div>         
+        <div class="separator-11"></div> 
+        <div id="myBtn" onclick="sendId(2)">
             <div class="team bb br">
                 <%= fround[0].fTeam %> <span class="rez"><%= fround[0].fTeamScore %></span>
                 <!--2.MT <span class="rez">0</span>-->
@@ -22,18 +44,24 @@
                 <span class="today le">12:20 va</span>
                 <span class="b"><%= fround[0].sTeam %></span> <span class="rez g b"><%= fround[0].sTeamScore %></span>     
             </div>
+        </div>        
+            
 <!--(3)----------------------------------------------------------->
         <div class="separator-1"></div>
+        <div id="myBtn" onclick="sendId(3)">
             <div class="team bb">
-                2.PT <span class="rez br">0</span>
+                2.PT <span class="rez g b">2</span>
             </div>
             <div class="team br">
                 <span class="today le">11:30 dv</span>
-                <span class="b">2.RT</span> <span class="rez g b">0</span>
+                <span class="b">2.RT</span> <span class="rez br">1</span>
             </div>
+        </div>
+            
 
 <!--(4)---------------------------------------------------------->            
-        <div class="separator-11"></div>          
+        <div class="separator-11"></div> 
+        <div id="myBtn" onclick="sendId(4)">
             <div class="team bb br">
                 <span class="b">1.MT</span> <span class="rez g b">0</span>
             </div>
@@ -41,37 +69,47 @@
                 <span class="today le">11:05 dv</span>
                 3.MT <span class="rez br">0</span>
             </div>
+        </div>         
+            
         <div class="separator-1"></div>
 
 
 <!--(5)---------------------------------------------------------->
+        <div id="myBtn" onclick="sendId(5)">
             <div class="team bb">
-               3.EL <span class="rez br">0</span>
-            </div>
-            <div class="team br">
-                <span class="today le">10:40 va</span>
-                1.P <span class="rez br">0</span>
-            </div>
+                3.EL <span class="rez br">2</span>
+             </div>
+             <div class="team br">
+                 <span class="today le">10:40 va</span>
+                 <span class="b">1.P</span> 
+                 <span class="rez br g b">3</span>
+             </div> 
+        </div>
+            
 <!--(6)---------------------------------------------------------->
         <div class="separator-11"></div>
-            
+        <div id="myBtn" onclick="sendId(6)">
             <div class="team bb br">
-                3.RT <span class="rez">0</span>
+                <span class="b">3.RT</span> <span class="rez g b">9</span>
             </div>
             <div class="team">
                 <span class="today le">10:40 dv</span>
-                <span class="b">4.PT</span> <span class="rez g b">0</span>
+                <span >4.PT</span> <span class="rez br">0</span>
             </div>
+        </div>    
+            
 <!--(7)---------------------------------------------------------->
         <div class="separator-1"></div>        
-            
+        <div id="myBtn" onclick="sendId(7)">
             <div class="team bb">
-                <span class="b">1.EL</span> <span class="rez g b">0</span>
+                <span class="b">1.EL</span> <span class="rez br">0</span>
             </div>
             <div class="team br">
                 <span class="today le">11:55 dv</span>
-                3.S<span class="rez">0</span>
+                3.S<span class="rez g b">3</span>
             </div>
+        </div>
+            
 <!--(8)---------------------------------------------------------->
 
         <div class="separator-11"></div>
@@ -92,32 +130,41 @@
             </div>
 <!--(10)----------------------------------------------------------> 
         <div class="separator-11"></div>
+        <div id="myBtn" onclick="sendId(10)">
             <div class="team bb br">
-                <span class="b">2.P</span> <span class="rez g b">0</span>
+                <span class="b">2.P</span> <span class="rez g b">9</span>
             </div>
             <div class="team">
                 <span class="today le">11:55 va</span>
                 1.SP <span class="rez br">0</span>
             </div>
+        </div>
+            
 <!--(11)----------------------------------------------------------> 
     <div class="separator-1"></div>
-            <div class="team bb">
-                3.PT <span class="rez br">0</span>
+    <div id="myBtn" onclick="sendId(11)">
+        <div class="team bb">
+                3.PT <span class="rez g b">6</span>
             </div>
             <div class="team br">
                 <span class="today le">12:20 dv</span>
-                <span class="b">2.SP</span> <span class="rez g b">0</span>    
+                <span class="b">2.SP</span> <span class="rez br">1</span>    
             </div>
+    </div>
+            
 
 <!--(12)---------------------------------------------------------->             
     <div class="separator-11"></div>
-            <div class="team bb br">
-                1.PT <span class="rez br">0</span>
+    <div id="myBtn" onclick="sendId(12)">
+        <div class="team bb br">
+                <span class="b">1.PT</span>  <span class="rez br g b">2</span>
             </div>
             <div class="team">
                 <span class="today le">11:05 va</span>
-                <span class="b">3.P</span> <span class="rez g b">0</span>
+                <span class="">3.P</span> <span class="rez br">1</span>
             </div>
+    </div>
+            
 <!--(13)----------------------------------------------------------> 
     <div class="separator-1"></div>
             <div class="team bb">
@@ -138,13 +185,16 @@
 
 <!--(15)---------------------------------------------------------->             
     <div class="separator-1"></div>
-            <div class="team bb">
-                2.EL <span class="rez br">0</span>
+    <div id="myBtn" onclick="sendId(15)">
+        <div class="team bb">
+                <span class="b">2.EL</span>  <span class="rez br g b">10</span>
             </div>
             <div class="team br">
                 <span class="today le">11:30 va</span>
-                <span class="b">KM</span> <span class="rez g b ">0</span>
+                <span class="">KM</span> <span class="rez br">0</span>
             </div>
+    </div>
+            
 
 <!--(16)---------------------------------------------------------->  
     <div class="separator-11"></div>
@@ -164,62 +214,65 @@
 
             </div>
 <!--(17)---------------------------------------------------------------->
-            <span id="box17" onclick="getDetails(0)">
+<div id="myBtn" onclick="sendId(17)">
                 <div class="team bb">
-                    <span class="b">Prof</span> <span class="rez g b ">0</span>
+                    <span class="b">Prof</span> <span class="rez g b ">6</span>
                 </div>
                 <div class="small-box">
                 <div class="team br mb2">
                     <span class="today le">13:35 dv</span>
-                    --- <span class="rez br">0</span>
+                    2.MT <span class="rez br">0</span>
                 </div>   
                 </div>
-            </span>
-    <div class="separator-2"></div>
+</div>
+    
 <!--(18)------------------------------------------------------------------->
-            <span id="box18" onclick="getDetails(1)">
+<div class="separator-2"></div>
+<div id="myBtn" onclick="sendId(18)">
                 <div class="team bb br">
-                    <span class="b">---</span> <span class="rez g b">0</span>
+                    <span class="">2.PT</span> <span class="rez br">2</span>
                 </div>  
                 <div class="team">
                     <span class="today le">13:35 va</span>
-                    --- <span class="rez br">0</span>
+                    <span class="b">3.MT</span>  <span class="rez g b">8</span>
                 </div>
-            </span>
+</div>
 <!--(19)------------------------------------------------------------------->
     <div class="separator-2-noline"></div>
-            <span id="box19" onclick="getDetails(2)">
-                <div class="team bb">
-                    <span class="b">---</span> <span class="rez g b">0</span>
+    <div id="myBtn" onclick="sendId(19)">
+        <div class="team bb">
+                    <span >1.P</span> <span class="rez br">0</span>
                 </div>
                 <div class="team br">
                     <span class="today le">12:45 va</span>
-                    --- <span class="rez br">0</span>
+                    <span class="b">3.RT</span>  <span class="rez g b">5</span>
                 </div>
-            </span>    
+    </div>
+                
+                
 <!--(20)------------------------------------------------------------------->
     <div class="separator-2"></div>
-            <span id="box20" onclick="getDetails(3)">
+    <div id="myBtn" onclick="sendId(20)">
                 <div class="team bb br">
-                    3.RT <span class="rez br">0</span>
+                    3.SP <span class="rez br">2</span>
                     
                 </div>
                 <div class="team s2">
                     <span class="today le">13:10 dv</span>
-                    <span class="b">4.RT</span> <span class="rez g b">0</span>
+                    <span class="b">4.RT</span> <span class="rez g b">7</span>
                 </div>
-            </span>
+    </div>
  <!--(21)------------------------------------------------------------------->
     <div class="separator-2-noline"></div>
-            <span id="box21" onclick="getDetails(4)">
+    <div id="myBtn" onclick="sendId(21)">
                 <div class="team bb">
-                    <span class="b">2.S</span> <span class="rez g b">0</span>
+                    <span class="b">2.S</span> <span class="rez g b">4</span>
                 </div>
                 <div class="team br mb2">
                     <span class="today le">13:10 va</span>
-                    --- <span class="rez br">0</span>
+                    2.P <span class="rez br">1</span>
                 </div>
-            </span>
+    </div>
 <!--(22)------------------------------------------------------------------->
     <div class="separator-2"></div>
             <span id="box22" onclick="getDetails(5)">
@@ -233,7 +286,7 @@
             </span>    
 <!--(23)------------------------------------------------------------------->
     <div class="separator-2-noline"></div>
-            <span id="box23" onclick="getDetails(6)">
+        <div id="myBtn" onclick="sendId(23)">
                 <div class="team bb">
                     <span class="b">4.EL</span> <span class="rez g b">0</span>
                 </div>
@@ -241,24 +294,31 @@
                     <span class="today le">nak 13.10.</span>
                     3.SP <span class="rez br">0</span>
                 </div>
-            </span>
+        </div>
 <!--(24)------------------------------------------------------------------->
     <div class="separator-2"></div>
-            <span id="box24" onclick="getDetails(7)">
+    <div id="myBtn" onclick="sendId(24)">
                 <div class="team bb br">
-                    <span class="b">---</span> <span class="rez g b">0</span>
+                    <span class="b">2.EL</span> <span class="rez g b">3</span>
                 </div>
                 <div class="team s2">
                     4.MT
                     <span class="today le">12:45 dv</span>
                     <span class="rez br">0</span>
                 </div>
-            </span>
+    </div>
         </div>
-        <div class="box mid back">
+        <div id="toFinalsPage" class="box mid back">
             <a href="/finals">finals</a>
         </div>
 </div>
+<script>
+    const toFinalsPage=document.querySelector('#toFinalsPage')
 
+    toFinalsPage.addEventListener('click',()=>{
+        console.log('bla')
+        window.location.href='/finals'
+    })
+</script>
 
  <%- include('footer'); -%>

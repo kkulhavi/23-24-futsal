@@ -1,5 +1,16 @@
     
     <%- include('header'); -%>
+
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="message"></p>
+    </div>
+  
+  </div>
     <!-- best players 
     <div class="best-players">
         <div class="bp-space" ></div>
@@ -19,15 +30,19 @@
                 <th>Razred</th>
             </tr>
        <!--     <tbody id="bp-list">-->
-                <% bp.forEach((player,i) => { %>
-                    <tbody>
-                        <td><%=i+1 %></td>
-                        <td><%= player.surname%></td>
-                        <td><%= player.name%></td>
-                        <td><%= player.goal%></td>
-                        <td><%= player.cl%></td>
-                    </tbody>
-                <% }) %>
+        <tbody>
+            <% bp.forEach((player,i) => { %>
+                <tr>
+                    <td><%=i+1 %></td>
+                    <td><%= player.surname%></td>
+                    <td><%= player.name%></td>
+                    <td><%= player.goal%></td>
+                    <td><%= player.cl%></td> 
+                </tr>      
+        <% }) %>
+        </tbody>
+                
+               
       </table>          
       <!--       </tbody>
     

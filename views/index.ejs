@@ -1,9 +1,21 @@
 <%- include('header'); -%>
 <!-- elimination chart -->
-    <div class="container">
+<div class="container">
+ 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p id="message"></p>
+    </div>
+  
+</div>
         
-<div class="box mid back">
-        <a href="qualifications">qualifi<br>cations</a>
+
+<div id="toQualifPage" class="box mid back">
+        <a href="qualifications">qualifi<br>cations</a> 
 </div>
 
         <!--***************************quarter******************************************
@@ -195,6 +207,13 @@
 
     </div>
 </div>
-    
+<script>
+    const toQualifPage=document.querySelector('#toQualifPage')
+
+    toQualifPage.addEventListener('click',()=>{
+        
+        window.location.href='/'
+    })
+</script>   
 
 <%- include('footer'); -%>
