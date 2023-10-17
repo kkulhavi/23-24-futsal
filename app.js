@@ -46,7 +46,7 @@ const firstRound=[
       {id:20, round: 2, fTeam:'3.SP',sTeam:'4.RT',fTeamScore:2, sTeamScore:7, goals:[{name: 'Patrik', surname: 'Broš', goal:1, cl:'4.RT'},{name: 'Toni', surname: 'Čimiris', goal:2, cl:'4.RT'},{name: 'David', surname: 'Dubravac', goal:1, cl:'4.RT'},{name: 'Dean', surname: 'Rončević', goal:2, cl:'4.RT'},{name: 'Mihael', surname: 'Malina', goal:1, cl:'4.RT'},{name: '-', surname: 'Đorđević', goal:1, cl:'2.SP'},{name: '-', surname: 'Matić', goal:1, cl:'2.SP'}]},
       {id:21, round: 2, fTeam:'2.S',sTeam:'2.P',fTeamScore:4, sTeamScore:1, goals:[{name: '-', surname: 'Gegić ', goal:2, cl:'2.S'},{name: '-', surname: 'Ivić ', goal:1, cl:'2.S'},{name: '-', surname: 'Vicić ', goal:1, cl:'2.S'},{name: '-', surname: 'Ivić', goal:1, cl:'2.P'},]},
   {id:22, round: 2, fTeam:'1.P',sTeam:'2.RT',fTeamScore:3, sTeamScore:1, goals:[{name: 'Renato', surname: 'Lefelman', goal:1, cl:'1.P'}, {name: 'Lukas', surname: 'Brdal', goal:1, cl:'2.RT'}]},
-  {id:23, round: 2, fTeam:'4.EL',sTeam:'3.RT',fTeamScore:5, sTeamScore:3, goals:[{name: 'Teo', surname: 'Duvnjak', goal:3, cl:'4.EL'}, {name: 'David', surname: 'Dubravac', goal:2, cl:'3.RT'}, {name: 'Toni', surname: 'Čimiris', goal:1, cl:'3.RT'}]},
+  {id:23, round: 2, fTeam:'4.EL',sTeam:'3.RT',fTeamScore:5, sTeamScore:3, goals:[{name: ';', surname: '-', goal:0, cl:')'},]},
       {id:24, round: 2, fTeam:'2.EL',sTeam:'4.MT',fTeamScore:3, sTeamScore:0 , goals:[{name: '-', surname: 'Ereiz', goal:2, cl:'2.EL'},{name: '-', surname: 'Parag', goal:1, cl:'2.EL'}]},
       //quarter finals-round 3
       /*25-28 */
