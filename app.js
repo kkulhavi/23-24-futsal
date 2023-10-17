@@ -132,7 +132,7 @@ app.get('/qualifications', (req, res) => {
   res.render('qualifications',{fround:firstRound})
 })
 app.get('/about', (req, res) => {
-  res.render('about',{dev:'Krunoslav Kulhavi', judge:'??', idea:'Danko Tomašek'})
+  res.render('about',{dev:'Krunoslav Kulhavi', judge:'Mihael Malina, David Dubravac, Ivan Benković, Donatto Matković, David Vacka', writer:'Dean Rončević, Toni Čimiris, Patrik Broš, David Vacka', idea:'Danko Tomašek'})
 })
 
 app.post('/info', (req, res) => {

@@ -16,7 +16,17 @@ function sendId(id){
 
   if (id==1||id==8||id==9||id==13||id==16) {
     message.innerHTML='nema para 🤑 $ 💲 ＄ 💰'
-  } else {
+  }
+  else if(id==100)
+  {
+    message.innerHTML='nadolazeća utakmica'
+  }
+  else if(id==99)
+  {
+    message.innerHTML='Dubravac MVP 💲💲💲💲💲'
+  }
+   else 
+  {
     postData("/info", { id: id }).then((data) => {
       console.log(data); 
       //message.innerHTML=data[0].goals[0].name+'<br>'+data[0].goals[0].surname
