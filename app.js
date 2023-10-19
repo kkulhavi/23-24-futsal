@@ -12,6 +12,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
+var countFinals=0
+var countQualif=0
+var countBest=0
+var countAbout=0
+
 const fruits=['apple','pear','plum','raspberry']
 const items=[
     {name:'iPhone', price: 800, category:'mobile', brand:'Apple', url:'http://abc'},
@@ -125,6 +130,7 @@ console.log(totalScore)
 
 
 app.get('/', (req, res) => {
+  countFinals++
   res.render('index')
   //res.render('qualifications',{fround:firstRound})
 })
@@ -132,14 +138,26 @@ app.get('/finals', (req, res) => {
   res.render('index')
 })
 app.get('/bestplayers', (req, res) => {
+  countBest++
   res.render('bestplayers',{bp:result.sort((a,b)=>b.goal-a.goal), total:totalScore})
 })
 app.get('/qualifications', (req, res) => {
+  countQualif++
   res.render('qualifications',{fround:firstRound})
 })
 app.get('/about', (req, res) => {
+  countAbout++
   res.render('about',{dev:'Krunoslav Kulhavi', judge:'Mihael Malina, David Dubravac, Ivan Benković, Donatto Matković, David Vacka', writer:'Dean Rončević, Toni Čimiris, Patrik Broš, David Vacka', idea:'Danko Tomašek'})
 })
+
+
+app.get('/stats', (req, res) => {
+  res.render('statistics',{countFinals,countQualif, countBest,countAbout})
+})
+
+
+
+
 
 app.post('/info', (req, res) => {
   console.log(req.body.id)
