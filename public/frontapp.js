@@ -88,5 +88,9 @@ async function postData(url = "/info", data = {}) {
     });
     return response.json(); // parses JSON response into native JavaScript objects
   }
+
+  function getBestPlayers(value){
+    
+  }
   
   

@@ -106,19 +106,90 @@ const bestPlayers=[
   ...firstRound[27].goals, 
    
 ]
+const bestPlayers1st=[
+    
+  //...firstRound[0].goals,
+  ...firstRound[1].goals,
+  ...firstRound[2].goals,
+  ...firstRound[3].goals,
+  ...firstRound[4].goals,
+  ...firstRound[5].goals, 
+  ...firstRound[6].goals, 
+  ...firstRound[9].goals,
+  ...firstRound[10].goals,
+  ...firstRound[11].goals, 
+  //...firstRound[11].goals, 
+  //...firstRound[12].goals, 
+  ...firstRound[13].goals, 
+  ...firstRound[14].goals,
+  //...firstRound[15].goals, 
+]
+  /*2nd */
+  var bestPlayers2nd=[
+    ...firstRound[16].goals, 
+  ...firstRound[17].goals, 
+  ...firstRound[18].goals, 
+  ...firstRound[19].goals, 
+  ...firstRound[20].goals, 
+  ...firstRound[21].goals, 
+  ...firstRound[22].goals, 
+  ...firstRound[23].goals, 
+     
+  ]
+  /*quarter */
+  var bestPlayersQuarter=[
+  ...firstRound[24].goals, 
+  ...firstRound[25].goals, 
+  ...firstRound[26].goals, 
+  ...firstRound[27].goals, 
+   
+]
 
 
 //console.log(bestPlayers)
 
 const totalScore=bestPlayers.reduce((total, player)=>total+player.goal,0)
+const totalScore1st=bestPlayers1st.reduce((total, player)=>total+player.goal,0)
+const totalScore2nd=bestPlayers2nd.reduce((total, player)=>total+player.goal,0)
+const totalScoreQuarter=bestPlayersQuarter.reduce((total, player)=>total+player.goal,0)
 
 
-
+//ukupno
 var result = [];
 bestPlayers.reduce(function(res, value) {
   if (!res[value.surname]) {
-    res[value.surname] = { name: value.name, surname: value.surname, goal: 0, cl:value.cl };
+    res[value.surname] = { name: value.name, surname: value.surname, goal: 0, cl:value.cl};
     result.push(res[value.surname])
+  }
+  res[value.surname].goal += value.goal;
+  return res;
+}, {});
+//1st
+var result1st = [];
+bestPlayers1st.reduce(function(res, value) {
+  if (!res[value.surname]) {
+    res[value.surname] = { name: value.name, surname: value.surname, goal: 0, cl:value.cl};
+    result1st.push(res[value.surname])
+  }
+  res[value.surname].goal += value.goal;
+  return res;
+}, {});
+//2nd
+var result2nd = [];
+bestPlayers2nd.reduce(function(res, value) {
+  if (!res[value.surname]) {
+    res[value.surname] = { name: value.name, surname: value.surname, goal: 0, cl:value.cl};
+    result2nd.push(res[value.surname])
+  }
+  res[value.surname].goal += value.goal;
+  return res;
+}, {});
+//quarter
+var resultQuarter = [];
+bestPlayersQuarter.reduce(function(res, value) {
+  if (!res[value.surname]) {
+    res[value.surname] = { name: value.name, surname: value.surname, goal: 0, cl:value.cl};
+    resultQuarter.push(res[value.surname])
   }
   res[value.surname].goal += value.goal;
   return res;
@@ -126,8 +197,12 @@ bestPlayers.reduce(function(res, value) {
 
 
 
-console.log(totalScore)
-
+//group by goals, then compare by surname
+//var groupByGoalAndSortBySurnameAsc=result.sort((a,b)=>b.goal-a.goal||a.surname.localeCompare(b.surname))
+var groupByGoalAndSortBySurnameAsc=result.sort((a,b)=>b.goal-a.goal||new Intl.Collator().compare(a.surname,b.surname))
+var groupByGoalAndSortBySurnameQuarterAsc=resultQuarter.sort((a,b)=>b.goal-a.goal||new Intl.Collator().compare(a.surname,b.surname))
+var groupByGoalAndSortBySurname2ndAsc=result2nd.sort((a,b)=>b.goal-a.goal||new Intl.Collator().compare(a.surname,b.surname))
+var groupByGoalAndSortBySurname1stAsc=result1st.sort((a,b)=>b.goal-a.goal||new Intl.Collator().compare(a.surname,b.surname))
 
 app.get('/', (req, res) => {
   countFinals++
@@ -139,7 +214,19 @@ app.get('/finals', (req, res) => {
 })
 app.get('/bestplayers', (req, res) => {
   countBest++
-  res.render('bestplayers',{bp:result.sort((a,b)=>b.goal-a.goal), total:totalScore})
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurnameAsc, total:totalScore})
+})
+app.get('/bestplayer1st', (req, res) => {
+  countBest++
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurname1stAsc, total:totalScore1st})
+})
+app.get('/bestplayer2nd', (req, res) => {
+  countBest++
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurname2ndAsc, total:totalScore2nd})
+})
+app.get('/bestplayersquarter', (req, res) => {
+  countBest++
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurnameQuarterAsc, total:totalScoreQuarter})
 })
 app.get('/qualifications', (req, res) => {
   countQualif++
