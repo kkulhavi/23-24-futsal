@@ -56,7 +56,7 @@ const firstRound=[
       //quarter finals-round 3
       /*25-28 */
       {id:25, round: 3, fTeam:'Prof',sTeam:'3.MT',fTeamScore:5, sTeamScore:0, goals:[{name: 'Tomislav', surname: 'Brletić', goal:3, cl:'Prof'},{name: 'Branko', surname: 'Blažević', goal:1, cl:'Prof'},{name: '-', surname: 'Đilas', goal:1, cl:'Prof'}]},
-      {id:26, round: 3, fTeam:'3.RT',sTeam:'4.RT',fTeamScore:4, sTeamScore:2, goals:[{name: 'Lukas', surname: 'Brdal', goal:1, cl:'3.RT'},{name: 'David', surname: 'Krmela', goal:1, cl:'3.RT'},{name: 'Ivano', surname: 'Ivančić', goal:2, cl:'3.RT'},{name: 'Lukas', surname: 'Brdal', goal:2, cl:'3.RT'}, {name: 'Toni', surname: 'Čimiris', goal:1, cl:'4.RT'}, {name: 'David', surname: 'Dubravac', goal:1, cl:'4.RT'}]},
+      {id:26, round: 3, fTeam:'3.RT',sTeam:'4.RT',fTeamScore:4, sTeamScore:2, goals:[{name: 'Lukas', surname: 'Brdal', goal:1, cl:'3.RT'},{name: 'David', surname: 'Krmela', goal:1, cl:'3.RT'},{name: 'Ivano', surname: 'Ivančić', goal:2, cl:'3.RT'}, {name: 'Toni', surname: 'Čimiris', goal:1, cl:'4.RT'}, {name: 'David', surname: 'Dubravac', goal:1, cl:'4.RT'}]},
       {id:27, round: 3, fTeam:'2.S',sTeam:'1.PT',fTeamScore:0, sTeamScore:1, goals:[{name: 'Goran', surname: 'Ivić', goal:1, cl:'2.S'}]},
       {id:28, round: 3, fTeam:'4.EL',sTeam:'2.EL',fTeamScore:0, sTeamScore:0, goals:[{name: 'Stjepan', surname: 'Bina', goal:2, cl:'4.EL'}, {name: 'Noa', surname: 'Ereiz', goal:1, cl:'2.EL'}]},
    //semi finals
@@ -142,16 +142,34 @@ const bestPlayers1st=[
   ...firstRound[25].goals, 
   ...firstRound[26].goals, 
   ...firstRound[27].goals, 
-   
 ]
 
+const bestPlayers2ndQuarter=[
 
-//console.log(bestPlayers)
+  /*second round */
+  ...firstRound[16].goals, 
+  ...firstRound[17].goals, 
+  ...firstRound[18].goals, 
+  ...firstRound[19].goals, 
+  ...firstRound[20].goals, 
+  ...firstRound[21].goals, 
+  ...firstRound[22].goals, 
+  ...firstRound[23].goals, 
+  
+
+  /*quarter */
+  ...firstRound[24].goals, 
+  ...firstRound[25].goals, 
+  ...firstRound[26].goals, 
+  ...firstRound[27].goals, 
+   
+]
 
 const totalScore=bestPlayers.reduce((total, player)=>total+player.goal,0)
 const totalScore1st=bestPlayers1st.reduce((total, player)=>total+player.goal,0)
 const totalScore2nd=bestPlayers2nd.reduce((total, player)=>total+player.goal,0)
 const totalScoreQuarter=bestPlayersQuarter.reduce((total, player)=>total+player.goal,0)
+const totalScore2ndQuarter=bestPlayers2ndQuarter.reduce((total, player)=>total+player.goal,0)
 
 
 //ukupno
@@ -194,6 +212,16 @@ bestPlayersQuarter.reduce(function(res, value) {
   res[value.surname].goal += value.goal;
   return res;
 }, {});
+//2nd+quarter
+var result2ndQuarter = [];
+bestPlayers2ndQuarter.reduce(function(res, value) {
+  if (!res[value.surname]) {
+    res[value.surname] = { name: value.name, surname: value.surname, goal: 0, cl:value.cl};
+    result2ndQuarter.push(res[value.surname])
+  }
+  res[value.surname].goal += value.goal;
+  return res;
+}, {});
 
 
 
@@ -203,6 +231,7 @@ var groupByGoalAndSortBySurnameAsc=result.sort((a,b)=>b.goal-a.goal||new Intl.Co
 var groupByGoalAndSortBySurnameQuarterAsc=resultQuarter.sort((a,b)=>b.goal-a.goal||new Intl.Collator().compare(a.surname,b.surname))
 var groupByGoalAndSortBySurname2ndAsc=result2nd.sort((a,b)=>b.goal-a.goal||new Intl.Collator().compare(a.surname,b.surname))
 var groupByGoalAndSortBySurname1stAsc=result1st.sort((a,b)=>b.goal-a.goal||new Intl.Collator().compare(a.surname,b.surname))
+var groupByGoalAndSortBySurname2ndQuarterAsc=result2ndQuarter.sort((a,b)=>b.goal-a.goal||new Intl.Collator().compare(a.surname,b.surname))
 
 app.get('/', (req, res) => {
   countFinals++
@@ -214,19 +243,23 @@ app.get('/finals', (req, res) => {
 })
 app.get('/bestplayers', (req, res) => {
   countBest++
-  res.render('bestplayers',{bp:groupByGoalAndSortBySurnameAsc, total:totalScore})
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurnameAsc, total:totalScore, y1:'',y2:'',yq:'',y2q:'',y:'y'})
+})
+app.get('/bestplayers2ndquarter', (req, res) => {
+  countBest++
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurname2ndQuarterAsc, total:totalScore2nd+totalScoreQuarter, y1:'',y2:'',yq:'',y2q:'y',y:''})
 })
 app.get('/bestplayer1st', (req, res) => {
   countBest++
-  res.render('bestplayers',{bp:groupByGoalAndSortBySurname1stAsc, total:totalScore1st})
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurname1stAsc, total:totalScore1st, y1:'y',y2:'',yq:'',y2q:'',y:''})
 })
 app.get('/bestplayer2nd', (req, res) => {
   countBest++
-  res.render('bestplayers',{bp:groupByGoalAndSortBySurname2ndAsc, total:totalScore2nd})
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurname2ndAsc, total:totalScore2nd, y1:'',y2:'y',yq:'',y2q:'',y:''})
 })
 app.get('/bestplayersquarter', (req, res) => {
   countBest++
-  res.render('bestplayers',{bp:groupByGoalAndSortBySurnameQuarterAsc, total:totalScoreQuarter})
+  res.render('bestplayers',{bp:groupByGoalAndSortBySurnameQuarterAsc, total:totalScoreQuarter, y1:'',y2:'',yq:'y',y2q:'',y:''})
 })
 app.get('/qualifications', (req, res) => {
   countQualif++
