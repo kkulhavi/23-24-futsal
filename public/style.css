@@ -77,6 +77,12 @@ a:hover{
   left: 2px; 
   top:-8px;
 }
+/*official rank*/
+.offic{
+    position: absolute;
+    left: 2px; 
+    top:-8px;
+  }
 .mid{
     display: flex;
     align-items: center;
@@ -314,6 +320,9 @@ option:first-child{
 }
 .gray{
     background-color: #f2f2f2;
+}
+.bronze{
+    background-color: blanchedalmond;
 }
 .winn-cup{
     font-size: 30px;
