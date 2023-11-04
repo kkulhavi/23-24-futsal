@@ -21,6 +21,10 @@ function sendId(id){
   {
     message.innerHTML='nadolazeća utakmica'
   }
+  else if(id==32)
+  {
+    message.innerHTML='Penali: <br><b>Prof</b> 1<br><b>4.EL</b> 2'
+  }
   else if(id==99)
   {
     message.innerHTML='Dubravac MVP 💲💲💲💲💲'
